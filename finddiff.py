@@ -1,39 +1,50 @@
 import sh
 import os
-#print(ifconfig("wlan0"))
-#print(sh.ls("-l"))
+from tempfile import NamedTemporaryFile, mkdtemp
+
+"""
+def make_a_file_in_a_dir(temp_dir):
+    sh.tar("cd", temp_dir)
+    sh.tar("git", "init")
+    temp_file = NamedTemporaryFile(delete=True, dir=".")
+    return temp_file
+"""
 
 
-def find_diffs(file_name1, file_name2):
-    if os.path.exists(file_name1) and os.path.exists(file_name2):
-        return True
+def find_diffs(input_file1, input_file2):
+    if os.path.exists(input_file1) and os.path.exists(input_file2):
+        try:
+            temp_dir = mkdtemp(prefix="gittemp", dir=os.getcwd())
+            #temp_file = make_a_file_in_a_dir(temp_dir)
+            print"----------------"
+            print temp_dir
+            print"----------------"
+            sh.cd(temp_dir)
+            print(sh.pwd())
+            #sh.tar("cd", temp_dir)
+            #sh.tar("git", "init")
+            sh.git("init")
+            print"----------------"
+            print(sh.ls("-al"))
+            print"----------------"
+            temp_file = NamedTemporaryFile(delete=True, dir=".")
+            print"----------------"
+            print(sh.ls("-al"))
+            print"----------------"
+            #either spawn a subprocess if needed
+            #temp_file.write(input_file1.read())
+            temp_file.write("hello world")
+            print temp_file.read()
+            sh.tar("git","add",".")
+            temp_file.write(input_file2.read())
+            print(temp_file.read())
+            print sh.git("diff")
+            #tempf.seek(0)
+            #print(tempf.read())
+            #tempf.close()
+        finally:
+            os.rmdir(temp_dir)
     else:
-        return False
-print find_diffs("test_diffmatch.py", "finddiff.py")
+        print"File dosen't exist"
 
-
-import tempfile
-
-# Use the TemporaryFile context manager for easy clean-up
-with tempfile.TemporaryFile() as tmp:
-    # Do stuff with tmp
-    tmp.write('stuff')
-
-# Clean up a NamedTemporaryFile on your own
-# delete=True means the file will be deleted on close
-tmp = tempfile.NamedTemporaryFile(delete=True)
-try:
-    # do stuff with temp
-    tmp.write('stuff')
-finally:
-    tmp.close()  # deletes the file
-
-# Handle opening the file yourself. This makes clean-up
-# more complex as you must watch out for exceptions
-fd, path = tempfile.mkstemp()
-try:
-    with os.fdopen(fd, 'w') as tmp:
-        # do stuff with temp file
-        tmp.write('stuff')
-finally:
-    os.remove(path)
+find_diffs("hello1.txt", "hello2.txt")
