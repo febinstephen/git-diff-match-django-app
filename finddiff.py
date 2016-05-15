@@ -18,27 +18,21 @@ def find_diffs(input_file1, input_file2):
             #temp_file = make_a_file_in_a_dir(temp_dir)
             print"----------------"
             print temp_dir
-            print"----------------"
             sh.cd(temp_dir)
             print(sh.pwd())
-            #sh.tar("cd", temp_dir)
-            #sh.tar("git", "init")
-            sh.git("init")
-            print"----------------"
-            print(sh.ls("-al"))
-            print"----------------"
-            temp_file = NamedTemporaryFile(delete=True, dir=".")
+            sh.git.init()
+            temp_file = NamedTemporaryFile(delete=False, dir=".")
             print"----------------"
             print(sh.ls("-al"))
             print"----------------"
             #either spawn a subprocess if needed
             #temp_file.write(input_file1.read())
             temp_file.write("hello world")
-            print temp_file.read()
-            sh.tar("git","add",".")
-            temp_file.write(input_file2.read())
             print(temp_file.read())
-            print sh.git("diff")
+            sh.git.add(".")
+            temp_file.write("hello india")
+            print(temp_file.read())
+            print sh.git.diff()
             #tempf.seek(0)
             #print(tempf.read())
             #tempf.close()
