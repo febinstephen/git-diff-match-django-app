@@ -1,9 +1,6 @@
 Django==1.9
-diff-match-patch==20110725.1
 pbr==1.8.1
 sh==1.11
 six==1.10.0
 stevedore==1.12.0
-virtualenv-clone==0.2.6
-virtualenvwrapper==4.7.1
 wsgiref==0.1.2
