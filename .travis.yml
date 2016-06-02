@@ -1,9 +1,12 @@
 language: python
 python:
   - 2.7
+
+env:
+  - DJANGO='Django>=1.7,<1.8'
 # command to install dependencies
 install:
   - pip install -r requirements.txt
   - pip install flake8
 # command to run tests
-#script: nosetests
+script: python manage.py test gitdiffmatch.tests
