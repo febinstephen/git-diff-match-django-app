@@ -3,11 +3,12 @@ from django import template
 register = template.Library()
 
 
-def insanddel(line):
-    if line.startswith('-'):
-        return line
-    elif line.startswith('+'):
-        return line
+def insert(line):
+    return line.startswith('-')
 
-register.filter('insanddel', insanddel)
-#register.filter('delete', delete)
+
+def delete(line):
+    return line.startswith('+')
+
+register.filter('insert', insert)
+register.filter('delete', delete)
