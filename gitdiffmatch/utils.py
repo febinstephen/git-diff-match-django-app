@@ -10,13 +10,10 @@ def find_diffs(input_file1, input_file2):
     diffs = out.split("\n")
     diffs_list = list()
     for line in diffs:
-        str = ""
         if line.startswith('-'):
-            str = '<del>' + line + '</del>'
-            diffs_list.append(str)
-        elif line.startswith('+'):
-            str = '<ins>' + line + '</ins>'
-            diffs_list.append(str)
+            diffs_list.append(line)
+        if line.startswith('+'):
+            diffs_list.append(line)
     return diffs_list
 
 print find_diffs("hello1.txt", "hello2.txt")

@@ -1,15 +1,11 @@
 {% load staticfiles %}
-{% load diffmore %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'gitdiffmatch/style.css' %}" />
 
 {% if diffs %}
     <ul>
     {% for line in diffs %}
-        {{ line|insert }}
-            <li class="ins">{{ line }}</li>
-        {{ line|delete }}
-            <li class="del">{{ line }}</li>
+        <li>{{ line }}</li>
     {% endfor %}
     </ul>
 {% else %}
