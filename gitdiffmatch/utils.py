@@ -16,4 +16,4 @@ def find_diffs(input_file1, input_file2):
             diffs_list.append(line)
     return diffs_list
 
-print find_diffs("hello1.txt", "hello2.txt")
+#print find_diffs("hello1.txt", "hello2.txt")

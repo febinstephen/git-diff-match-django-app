@@ -1,8 +1,9 @@
 .ins {
-    color: red;
-    background-color: black;
+    color: black;
+    background-color: #7DF577;
 }
 
 .del {
-    color: green;
+    color: black;
+    background-color: #F28770;  
 }

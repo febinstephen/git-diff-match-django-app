@@ -4,11 +4,18 @@ register = template.Library()
 
 
 def insert(line):
-    return line.startswith('-')
+        if line.startswith('+'):
+            return line
+        else:
+            return '-----------'
 
 
 def delete(line):
-    return line.startswith('+')
+        if line.startswith('-'):
+            return line
+        else:
+            return '------------'
+
 
 register.filter('insert', insert)
 register.filter('delete', delete)

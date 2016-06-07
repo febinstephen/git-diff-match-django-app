@@ -6,10 +6,8 @@
 {% if diffs %}
     <ul>
     {% for line in diffs %}
-        {{ line|insert }}
-            <li class="ins">{{ line }}</li>
-        {{ line|delete }}
-            <li class="del">{{ line }}</li>
+        <li class="ins">{{ line|insert }}</li>
+        <li class="del">{{ line|delete }}</li>
     {% endfor %}
     </ul>
 {% else %}
