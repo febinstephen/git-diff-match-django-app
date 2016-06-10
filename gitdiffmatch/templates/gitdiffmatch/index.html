@@ -3,13 +3,10 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'gitdiffmatch/style.css' %}" />
 
-{% if diffs %}
-    <ul>
-    {% for line in diffs %}
-        <li class="ins">{{ line|insert }}</li>
-        <li class="del">{{ line|delete }}</li>
+{% if diff %}
+    {% for line in diff %}
+        <p>{{ line }}</p>
     {% endfor %}
-    </ul>
 {% else %}
     <p>No diffs</p>
 {% endif %}
